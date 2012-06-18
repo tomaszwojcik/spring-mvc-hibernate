@@ -1,5 +1,4 @@
 *.class
-target/
 
 # IntelliJ Idea Files #
 .idea/
