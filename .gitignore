@@ -1,12 +1,27 @@
 *.class
 target/
+build/
+out/
 
 # IntelliJ Idea Files #
 .idea/
 *.iml
-out/
+*.ipr
+*.iws
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+
+*~
+\#*\#
+.#*
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+
+.gradle/
