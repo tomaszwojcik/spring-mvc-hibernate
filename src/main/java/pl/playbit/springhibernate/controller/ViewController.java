@@ -79,4 +79,27 @@ public class ViewController {
         return mav;
     }
 
+    //Form:
+    @RequestMapping(value = "/addForm", method = RequestMethod.GET)
+    public ModelAndView addForm() {
+        return new ModelAndView("form");
+    }
+
+    @RequestMapping(value = "/addForm", method = RequestMethod.POST)
+    public ModelAndView addModel(@ModelAttribute("person") Person person) {
+        ModelAndView mav = new ModelAndView("add");
+        personService.addPerson(person);
+        mav.addObject("firstname", person.getFirstname());
+        mav.addObject("lastname", person.getLastname());
+        return mav;
+    }
+
+    @ModelAttribute("person")
+    private Person person() {
+        Person person = new Person();
+        person.setFirstname("Enter your name");
+        person.setLastname("Enter your surname");
+        return person;
+    }
+
 }
