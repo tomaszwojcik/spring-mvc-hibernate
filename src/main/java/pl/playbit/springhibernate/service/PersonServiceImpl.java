@@ -17,7 +17,25 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional
     public void addPerson(Person person) {
-        personDAO.add(person);
+        personDAO.addPerson(person);
+    }
+
+    @Override
+    @Transactional
+    public Person getPerson(long id) {
+        return personDAO.getPerson(id);
+    }
+
+    @Override
+    @Transactional
+    public void deletePerson(long id) {
+        personDAO.removePerson(id);
+    }
+
+    @Override
+    @Transactional
+    public void updatePersonLastname(long id, String newLastname) {
+        personDAO.updatePersonLastname(id, newLastname);
     }
 
     @Override

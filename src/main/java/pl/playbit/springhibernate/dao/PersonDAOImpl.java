@@ -15,8 +15,29 @@ public class PersonDAOImpl implements PersonDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public void add(Person person) {
+    public void addPerson(Person person) {
         sessionFactory.getCurrentSession().save(person);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Person getPerson(long id) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Person where id = :id");
+        query.setParameter("id", id);
+        return (Person) query.uniqueResult();
+    }
+
+    @Override
+    public void removePerson(long id) {
+        Person person = getPerson(id);
+        sessionFactory.getCurrentSession().delete(person);
+    }
+
+    @Override
+    public void updatePersonLastname(long id, String newLastname) {
+        Person person = getPerson(id);
+        person.setLastname(newLastname);
+        sessionFactory.getCurrentSession().update(person);
     }
 
     @Override
@@ -32,4 +53,5 @@ public class PersonDAOImpl implements PersonDAO {
         query.setParameter("lastname", lastname);
         return query.list();
     }
+
 }

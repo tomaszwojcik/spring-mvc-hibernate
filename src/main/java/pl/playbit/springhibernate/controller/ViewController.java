@@ -79,6 +79,34 @@ public class ViewController {
         return mav;
     }
 
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public ModelAndView getById(@PathVariable long id) {
+        ModelAndView mav = new ModelAndView("id");
+        Person person = personService.getPerson(id);
+        mav.addObject("person", person);
+        return mav;
+    }
+
+    @RequestMapping("/delete/{id}")
+    public ModelAndView deleteById(@PathVariable long id) {
+        personService.deletePerson(id);
+        return getAllPersonsModelAndView();
+    }
+
+    @RequestMapping("/update/{id}/{newlastname}")
+    public ModelAndView update(@PathVariable long id, @PathVariable String newlastname) {
+        personService.updatePersonLastname(id, newlastname);
+        return getAllPersonsModelAndView();
+    }
+
+    private ModelAndView getAllPersonsModelAndView() {
+        ModelAndView mav = new ModelAndView("list");
+        List<Person> persons;
+        persons = personService.getAllPersons();
+        mav.addObject("persons", persons);
+        return mav;
+    }
+
     //Form:
     @RequestMapping(value = "/addForm", method = RequestMethod.GET)
     public ModelAndView addForm() {
