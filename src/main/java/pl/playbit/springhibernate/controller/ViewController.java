@@ -51,7 +51,7 @@ public class ViewController {
 
 
     @RequestMapping(value = "/addHeader", method = RequestMethod.POST)
-    public ModelAndView addHeader(@RequestHeader(value = "lastname", required = true) String firstname, @RequestHeader(value = "firstname", required = true) String lastname) {
+    public ModelAndView addHeader(@RequestHeader(value = "firstname", required = true) String firstname, @RequestHeader(value = "lastname", required = true) String lastname) {
         ModelAndView mav = new ModelAndView("add");
         mav.addObject("firstname", firstname);
         mav.addObject("lastname", lastname);
