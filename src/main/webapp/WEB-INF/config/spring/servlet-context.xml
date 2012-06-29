@@ -23,29 +23,4 @@
     <!-- Spring MVC -->
     <mvc:annotation-driven/>
 
-    <bean id="databaseDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5432/springhibernate"/>
-        <property name="username" value="twojcik"/>
-        <property name="password" value="twojcik"/>
-    </bean>
-
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-        <property name="dataSource" ref="databaseDataSource"/>
-        <property name="packagesToScan" value="pl.playbit.springhibernate"/>
-        <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
-            </props>
-        </property>
-    </bean>
-
-    <tx:annotation-driven/>
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
 </beans>

@@ -107,7 +107,7 @@ public class ViewController {
         return mav;
     }
 
-    //Form:
+    //Person form:
     @RequestMapping(value = "/addForm", method = RequestMethod.GET)
     public ModelAndView addForm() {
         return new ModelAndView("form");

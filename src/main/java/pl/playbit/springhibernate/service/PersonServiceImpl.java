@@ -1,9 +1,12 @@
 package pl.playbit.springhibernate.service;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.playbit.springhibernate.dao.DogDAO;
 import pl.playbit.springhibernate.dao.PersonDAO;
+import pl.playbit.springhibernate.model.Dog;
 import pl.playbit.springhibernate.model.Person;
 
 import java.util.List;
@@ -14,9 +17,20 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonDAO personDAO;
 
+    @Autowired
+    private DogDAO dogDAO;
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     @Transactional
     public void addPerson(Person person) {
+        Dog dogs[] = { new Dog("Fafik"), new Dog("Sidi") };
+        for (Dog dog : dogs) {
+            dogDAO.saveDog(dog);
+            person.addDog(dog);
+        }
         personDAO.addPerson(person);
     }
 
